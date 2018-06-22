@@ -7,8 +7,8 @@ public class GameManager : MonoBehaviour
     // Variables for custom grid
     static int rows = 3;
     static int columns = 4;
-    static float offset_X = 20f;
-    static float offset_Y = 16f;
+    static float offset_X = 100f;
+    static float offset_Y = 80f;
 
     // Face sprites
     public Sprite Face_Rocket;
