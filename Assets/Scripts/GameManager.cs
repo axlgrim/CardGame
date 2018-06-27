@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     // Card choosen for comparison 
     public Card RevealedCard;
 
+    private Card[,] _cardArray = new Card[rows+1, columns+1];
+
     private void Start()
     {
         Vector3 start_pos = Card.transform.position;
@@ -44,123 +46,91 @@ public class GameManager : MonoBehaviour
         {
             for (int j = 0; j < rows; j++)
             {
-                Card newCard;
+
                 if (0 == i && 0 == j)
                 {
-                    newCard = Card;
+                    _cardArray[i, j] = Card;
                 }
                 else
                 {
-                    newCard = Instantiate(Card) as Card;
+                    _cardArray[i, j] = Instantiate(Card) as Card;
 
                 }
+
                 
-                newCard = ChooseFace(Random.Range(1, 7), newCard);
+                if (cnt_rocket < 2)
+                {
+                    AddFace(Face_Rocket, _cardArray[i, j], 1);
+                    cnt_rocket++;
+                }
+                else if (cnt_planet < 2)
+                {
+                    AddFace(Face_Planet, _cardArray[i, j], 2);
+                    cnt_planet++;
+                }
+                else if (cnt_sun < 2)
+                {
+                    AddFace(Face_Sun, _cardArray[i, j], 3);
+                    cnt_sun++;
+                }
+                else if (cnt_alien < 2)
+                {
+                    AddFace(Face_Alien, _cardArray[i, j], 4);
+                    cnt_alien++;
+                }
+                else if (cnt_bender < 2)
+                {
+                    AddFace(Face_Bender, _cardArray[i, j], 5);
+                    cnt_bender++;
+                }
+                else if (cnt_dart < 2)
+                {
+                    AddFace(Face_Dart, _cardArray[i, j], 6);
+                    cnt_dart++;
+                }
+
+
+                //newCard = ChooseFace(UnityEngine.Random.Range(1, 7), newCard);
 
                 float pos_X = (offset_X * i) + start_pos.x;
                 float pos_Y = (offset_Y * j) + start_pos.y;
 
-                newCard.transform.position = new Vector3(pos_X, pos_Y, 0f);
+                _cardArray[i, j].transform.position = new Vector3(pos_X, pos_Y, 0f);
+
+            }
+        }
+        RandomShuffle();
+
+
+    }
+
+    void RandomShuffle()
+    {
+        Vector3 switchCardposition;
+        int rand_i;
+        int rand_j;
+        for (int i = 0; i < columns; i++)
+        {
+            for (int j = 0; j < rows; j++)
+            {
+                switchCardposition = _cardArray[i, j].transform.position;
+                rand_i = Random.Range(0, columns);
+                rand_j = Random.Range(0, rows);
+                _cardArray[i, j].transform.position = _cardArray[rand_i, rand_j].transform.position;
+                _cardArray[rand_i, rand_j].transform.position = switchCardposition;
 
             }
         }
 
-
     }
 
-    // Function randomly assigns face sprites to cards
-    private Card ChooseFace(int i, Card card)
+    void AddFace(Sprite Face, Card cardToAssign, int id)
     {
-        
-        begin:
 
-        switch (i)
-        {
-            case 1:
-                if (cnt_rocket < 2)
-                {
-                    cnt_rocket++;
-                    card.CardFace = Face_Rocket;
-                    card.Id = i;
-                }
-                else
-                {
-                    i = Random.Range(1, 7);
-                    goto begin;
-                }
-                break;
-
-            case 2:
-                if (cnt_planet < 2)
-                {
-                    cnt_planet++;
-                    card.CardFace = Face_Planet;
-                    card.Id = i;
-                }
-                else
-                {
-                    i = Random.Range(1, 7);
-                    goto begin;
-                }
-                break;
-            case 3:
-                if (cnt_sun < 2)
-                {
-                    cnt_sun++;
-                    card.CardFace =  Face_Sun;
-                    card.Id = i;
-                }
-                else
-                {
-                    i = Random.Range(1, 7);
-                    goto begin;
-                }
-                break;
-            case 4:
-                if (cnt_alien < 2)
-                {
-                    cnt_alien++;
-                    card.CardFace = Face_Alien;
-                    card.Id = i;
-                }
-                else
-                {
-                    i = Random.Range(1, 7);
-                    goto begin;
-                }
-                break;
-            case 5:
-                if (cnt_bender < 2)
-                {
-                    cnt_bender++;
-                    card.CardFace = Face_Bender;
-                    card.Id = i;
-                }
-                else
-                {
-                    i = Random.Range(1, 7);
-                    goto begin;
-                }
-                break;
-            case 6:
-                if (cnt_dart < 2)
-                {
-                    cnt_dart++;
-                    card.CardFace = Face_Dart;
-                    card.Id = i;
-                }
-                else
-                {
-                    i = Random.Range(1, 7);
-                    goto begin;
-                }
-                break;
-
-            default:
-                break;
-
-        }
-        return card;
+        cardToAssign.CardFace = Face;
+        cardToAssign.Id = id;
     }
+
+
 }
 
