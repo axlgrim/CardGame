@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public Sprite Face_Alien;
     public Sprite Face_Bender;
     public Sprite Face_Dart;
+    public int guessedCards = 0;
 
     // counters for each sprite
     int cnt_rocket = 0;

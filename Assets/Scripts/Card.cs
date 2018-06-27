@@ -11,6 +11,7 @@ public class Card : MonoBehaviour
     public Sprite CardFace;
     public Sprite CardBack;
 
+
     public int id;
 
     public bool revealed = false; 
@@ -91,6 +92,7 @@ public class Card : MonoBehaviour
 			Manager.RevealedCard.revealed = true;
 			cardToCompare.revealed = true;
 			Manager.RevealedCard = null;
+            Manager.guessedCards++;
 		}
 		else 
 		{
