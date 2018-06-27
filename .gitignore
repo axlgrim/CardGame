@@ -10,6 +10,7 @@ Packages/
 # ===================================== #
 ExportedObj/
 obj/
+.vs/
 *.svd
 *.userprefs
 *.csproj
