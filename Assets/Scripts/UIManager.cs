@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,34 +10,47 @@ public class UIManager : MonoBehaviour {
 
     public Text TimerField;
     public Text ScoreField;
+    public Text UserInfo;
+    public Text EndGameMessage;
     public GameObject PauseMenu;
+    public GameObject EndGame;
 
     public GameManager Manager;
 
     private float _timer;
 
     private int _totalGuessed = 6;
-    private string _minutes;
-    private string _seconds;
+    private int _minutes;
+    private int _seconds;
+    private bool _ended = false;
 
-    
+    private float _countdown;
 
+    private Color _winColor;
+    private Color _looseColor;
+
+
+    void Awake()
+    {
+        var textAsset = Resources.Load<TextAsset>("Config");
+        _countdown = Convert.ToInt32(textAsset.text);
+    }
 
     void Start()
     {
+        EndGame.SetActive(false);
         Resume();
+        
     }
 
     void Update()
     {
-        _timer = Time.timeSinceLevelLoad;
-        _minutes = ((int)_timer / 60).ToString();
-        _seconds = ((int)_timer % 60).ToString();
-        TimerField.text = _minutes + ":" + _seconds;
+
+        var remain = Convert.ToDouble(_countdown - ((int)_timer % 60));
 
         ScoreField.text = Manager.guessedCards.ToString() + "/" + _totalGuessed.ToString();
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !_ended)
         {
             if (Manager.isPaused)
             {
@@ -46,6 +60,23 @@ public class UIManager : MonoBehaviour {
             {
                 Pause();
             }
+        }
+
+        if (remain < 0)
+        {
+            Finish(Color.red, "DEFEAT!");
+        }
+        else if(Manager.guessedCards == _totalGuessed)
+        {
+            Finish(Color.green, "WIN!");
+        }
+        else
+        {
+            _timer = Time.timeSinceLevelLoad;
+            _minutes = ((int)_timer / 60);
+            _seconds = ((int)_timer % 60);
+            TimerField.text = _minutes.ToString() + ":" + _seconds.ToString();
+            UserInfo.text = "You have " + remain.ToString() + " seconds to win the game!";
         }
 
 
@@ -83,5 +114,14 @@ public class UIManager : MonoBehaviour {
         PauseMenu.SetActive(true);
         Time.timeScale = 0f;
         Manager.isPaused = true;
+    }
+
+    void Finish(Color color, string message)
+    {
+        EndGame.SetActive(true);
+        EndGameMessage.color = color;
+        EndGameMessage.text = message;
+        _ended = true;
+
     }
 }

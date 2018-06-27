@@ -15,33 +15,27 @@ Platform assembly: C:\Users\Admin\Documents\GitHub\CardGame\Build\Windows\GuessC
 Loading C:\Users\Admin\Documents\GitHub\CardGame\Build\Windows\GuessCard_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Users\Admin\Documents\GitHub\CardGame\Build\Windows\GuessCard_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading C:\Users\Admin\Documents\GitHub\CardGame\Build\Windows\GuessCard_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.027 seconds
+- Completed reload, in  0.032 seconds
 Platform assembly: C:\Users\Admin\Documents\GitHub\CardGame\Build\Windows\GuessCard_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Admin\Documents\GitHub\CardGame\Build\Windows\GuessCard_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 3200x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.330600 ms
+UnloadTime: 1.354771 ms
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 6.039392 ms
+UnloadTime: 5.277551 ms
 
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 312.
-Total: 0.330538 ms (FindLiveObjects: 0.031160 ms CreateObjectMapping: 0.020385 ms MarkObjects: 0.258897 ms  DeleteObjects: 0.019220 ms)
+Unloading 8 unused Assets to reduce memory usage. Loaded Objects now: 346.
+Total: 0.424312 ms (FindLiveObjects: 0.026210 ms CreateObjectMapping: 0.028831 ms MarkObjects: 0.346847 ms  DeleteObjects: 0.020968 ms)
 
-Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 1.345743 ms
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.914503 ms
 
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 312.
-Total: 0.289476 ms (FindLiveObjects: 0.041644 ms CreateObjectMapping: 0.020385 ms MarkObjects: 0.221038 ms  DeleteObjects: 0.005533 ms)
-
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.431593 ms
-
-Unloading 25 unused Assets to reduce memory usage. Loaded Objects now: 256.
-Total: 0.401597 ms (FindLiveObjects: 0.032325 ms CreateObjectMapping: 0.040480 ms MarkObjects: 0.294718 ms  DeleteObjects: 0.032908 ms)
+Unloading 27 unused Assets to reduce memory usage. Loaded Objects now: 256.
+Total: 0.332285 ms (FindLiveObjects: 0.031160 ms CreateObjectMapping: 0.027083 ms MarkObjects: 0.218708 ms  DeleteObjects: 0.053876 ms)
 
 Setting up 3 worker threads for Enlighten.
-  Thread -> id: 129e0 -> priority: 1 
-  Thread -> id: 11874 -> priority: 1 
-  Thread -> id: 84b0 -> priority: 1 
+  Thread -> id: 381a0 -> priority: 1 
+  Thread -> id: 381a8 -> priority: 1 
+  Thread -> id: 381a4 -> priority: 1 
