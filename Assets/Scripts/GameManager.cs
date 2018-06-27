@@ -57,7 +57,6 @@ public class GameManager : MonoBehaviour
 
                 }
 
-                
                 if (cnt_rocket < 2)
                 {
                     AddFace(Face_Rocket, _cardArray[i, j], 1);
