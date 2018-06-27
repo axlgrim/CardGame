@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public Sprite Face_Bender;
     public Sprite Face_Dart;
     public int guessedCards = 0;
+    public bool isPaused = false;
 
     // counters for each sprite
     int cnt_rocket = 0;
@@ -80,7 +81,7 @@ public class GameManager : MonoBehaviour
                 {
                     cnt_rocket++;
                     card.CardFace = Face_Rocket;
-                    card.id = i;
+                    card.Id = i;
                 }
                 else
                 {
@@ -94,7 +95,7 @@ public class GameManager : MonoBehaviour
                 {
                     cnt_planet++;
                     card.CardFace = Face_Planet;
-                    card.id = i;
+                    card.Id = i;
                 }
                 else
                 {
@@ -107,7 +108,7 @@ public class GameManager : MonoBehaviour
                 {
                     cnt_sun++;
                     card.CardFace =  Face_Sun;
-                    card.id = i;
+                    card.Id = i;
                 }
                 else
                 {
@@ -120,7 +121,7 @@ public class GameManager : MonoBehaviour
                 {
                     cnt_alien++;
                     card.CardFace = Face_Alien;
-                    card.id = i;
+                    card.Id = i;
                 }
                 else
                 {
@@ -133,7 +134,7 @@ public class GameManager : MonoBehaviour
                 {
                     cnt_bender++;
                     card.CardFace = Face_Bender;
-                    card.id = i;
+                    card.Id = i;
                 }
                 else
                 {
@@ -146,7 +147,7 @@ public class GameManager : MonoBehaviour
                 {
                     cnt_dart++;
                     card.CardFace = Face_Dart;
-                    card.id = i;
+                    card.Id = i;
                 }
                 else
                 {

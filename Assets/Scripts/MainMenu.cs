@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
     public void OnQuitClicked()
     {
         Application.Quit();
+        //System.Diagnostics.Process.GetCurrentProcess().Kill();
     }
 
 }

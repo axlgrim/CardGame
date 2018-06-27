@@ -7,40 +7,40 @@ public class Card : MonoBehaviour
 
     public SpriteRenderer SpriteRend;
     public GameManager Manager;
-	public Card cardToCompare = null;
+	public Card CardToCompare = null;
     public Sprite CardFace;
     public Sprite CardBack;
 
 
-    public int id;
+    public int Id;
 
-    public bool revealed = false; 
+    public bool Revealed = false; 
 
     public float ChangeTime = 2f;
 
-    private float time;
-    private float revealTime;
+    private float _time;
+    private float _revealTime;
 
-    private bool cardFlag;
-    private bool revealFinished = false;
-    private bool startFinished = false;
+    private bool _cardFlag;
+    private bool _revealFinished = false;
+    private bool _startFinished = false;
 
     // Showing faces if start time has not elapsed
     void Update()
     {
-        if (!startFinished)
+        if (!_startFinished)
         {
-            time += Time.deltaTime;
-            if (time >= ChangeTime)
+            _time += Time.deltaTime;
+            if (_time >= ChangeTime)
             {
                 SpriteRend.sprite = CardBack;
-                cardFlag = true;
-                startFinished = true;
+                _cardFlag = true;
+                _startFinished = true;
             }
             else
             {
                 SpriteRend.sprite = CardFace;
-                cardFlag = false;
+                _cardFlag = false;
             }
         }
     }
@@ -48,7 +48,7 @@ public class Card : MonoBehaviour
     // on click the instance will be assigned to appropriate field for future comparison
     public void OnMouseUp()
     {
-		if (startFinished && !revealed) 
+		if (_startFinished && !Revealed && !Manager.isPaused) 
 		{
 			if (null == Manager.RevealedCard)
 			{
@@ -57,8 +57,8 @@ public class Card : MonoBehaviour
 			}
 			else if(Manager.RevealedCard != this)
 			{
-				cardToCompare = this;
-				SpriteChange(cardToCompare);
+				CardToCompare = this;
+				SpriteChange(CardToCompare);
 				CheckCards();
 			}
 		}      
@@ -68,18 +68,18 @@ public class Card : MonoBehaviour
     // Changes Back sprite to Face sprite
     public void SpriteChange(Card thisCard)
     {
-		if (!thisCard.revealed) 
+		if (!thisCard.Revealed) 
 		{
-			if (thisCard.cardFlag)
+			if (thisCard._cardFlag)
 			{
 				thisCard.SpriteRend.sprite = CardFace;
-				thisCard.cardFlag = false;
+				thisCard._cardFlag = false;
 
 			}
 			else
 			{
 				thisCard.SpriteRend.sprite = CardBack;
-				thisCard.cardFlag = true;
+				thisCard._cardFlag = true;
 			}
 		}
     }
@@ -87,34 +87,34 @@ public class Card : MonoBehaviour
     // Compares cards on id
     void CheckCards()
     {
-		if (Manager.RevealedCard.id == cardToCompare.id) 
+		if (Manager.RevealedCard.Id == CardToCompare.Id) 
 		{
-			Manager.RevealedCard.revealed = true;
-			cardToCompare.revealed = true;
+			Manager.RevealedCard.Revealed = true;
+			CardToCompare.Revealed = true;
 			Manager.RevealedCard = null;
             Manager.guessedCards++;
 		}
 		else 
 		{
-			waitAndClose(Manager.RevealedCard, cardToCompare);
+			WaitAndClose(Manager.RevealedCard, CardToCompare);
 			Manager.RevealedCard = null;
-			cardToCompare = null;
-			revealTime = 0f;
-			revealFinished = false;
+			CardToCompare = null;
+			_revealTime = 0f;
+			_revealFinished = false;
 
 		}
     }
  
-	void waitAndClose(Card firstCard, Card secondCard)
+	void WaitAndClose(Card firstCard, Card secondCard)
 	{
-		while(!revealFinished) 
+		while(!_revealFinished) 
 		{
-			revealTime += Time.deltaTime;
-			if (revealTime >= ChangeTime ) 
+			_revealTime += Time.deltaTime;
+			if (_revealTime >= ChangeTime ) 
 			{
 				SpriteChange(firstCard);
 				SpriteChange(secondCard);
-				revealFinished = true;
+				_revealFinished = true;
 				
 			}
 		}		
